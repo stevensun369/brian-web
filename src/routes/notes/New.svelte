@@ -1,12 +1,17 @@
 <script>
-
+  import { push } from 'svelte-spa-router'
+  import { writable } from 'svelte/store'
   import { newNote } from '../../actions/notes'
-  let text
+  import NewNoteHeader from '../../components/NewNoteHeader.svelte'
+  import NewText from '../../components/NewText.svelte'
+
+  let text = writable('')
   
 </script>
 
-<textarea bind:value={text} name="new" id="" cols="30" rows="10" placeholder="just write whatever you're thinking about :)"></textarea>
+<NewNoteHeader onClick={async () => {
+  await newNote($text)
+  push('/home')
+}} />
 
-<input type="submit" on:click={async () => {
-  await newNote(text)
-}}>
+<NewText {text} />

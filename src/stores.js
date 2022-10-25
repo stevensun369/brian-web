@@ -5,13 +5,12 @@ export let token = writable({})
 
 let d = new Date()
 
-export let currDay = writable(d.getDate())
-export let currMonth = writable(d.getMonth() + 1)
+export let selDate = writable(d)
+
+export let selDay = writable(d.getDate())
+export let selMonth = writable(d.getMonth() + 1)
 
 export let time = writable(d.getHours() + d.getMinutes() + d.getSeconds())
-
-export let selDay = writable(get(currDay))
-export let selMonth = writable(get(currMonth))
 
 export let notes = writable({})
 

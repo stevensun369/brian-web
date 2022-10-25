@@ -55,13 +55,15 @@ export async function newNote(content) {
     let seconds = ('0' + d.getSeconds()).slice(-2)
 
     let time = hours + minutes + seconds
-    console.log(time)
 
     const {data} = await axios.post(
       `${apiURL}/v1/notes/new`,
       {content, dateMonth, dateDay, time},
       tokenConfig(get(token))
     )
+
+    let notesValue = get(notes)
+    notesValue[dateMonth + '.' + dateDay]
 
     console.log(data)
   } catch (error) {
